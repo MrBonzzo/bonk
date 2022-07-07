@@ -1,4 +1,5 @@
 from aiogram import types
+from aiogram.dispatchers import Dispatcher
 
 from settings import bot
 
