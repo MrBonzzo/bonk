@@ -7,4 +7,7 @@ dp = Dispatcher(bot)
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    await message.answer(message.text)
+    if 'лучше всех' in message.text:
+        await message.answer('Лерка лучше всех!')
+    else:
+        await message.answer(f"""Все говорят '''{message.text}''', а ты купи слона""")
