@@ -1,4 +1,3 @@
-
 import logging
 import os
 
@@ -9,7 +8,7 @@ from settings import WEBHOOK_PATH, WEBAPP_HOST, WEBAPP_PORT
 from bot_actions import on_startup, on_shutdown
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     start_webhook(
         dispatcher=dp,
