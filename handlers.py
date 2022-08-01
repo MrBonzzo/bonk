@@ -1,5 +1,10 @@
 import logging
+from time import time
 
+import pytesseract as pyts
+
+
+from PIL import Image
 from aiogram import types
 from aiogram.dispatcher import Dispatcher
 
@@ -21,10 +26,12 @@ async def get_photo(message: types.Message):
     photo_id = message.photo[-1].file_id
     photo = await bot.get_file(photo_id)
     photo_path = photo.file_path
-    await bot.download_file(photo_path, "last_photo.jpg")
-    await message.answer(photo_id)
-    await message.answer(photo)
-    await message.answer(photo_path)
+    local_image_name = f"images/{int(time() * 10**6)}.jpg"
+    await bot.download_file(photo_path, local_image_name)
+    with Image.open(local_image_name) as img:
+        text = pyts.image_to_string(img)
+
+    await message.answer(text)
 
 
 @dp.message_handler()
